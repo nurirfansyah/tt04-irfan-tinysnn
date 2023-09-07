@@ -1,8 +1,8 @@
 module spiking_neuron (
-    input clk,        // Clock
-    input rst_n,      // Active low reset
-    input [7:0] inn, // 8-bit input (analogous to input current for a real neuron)
-    output spike      // Output spike signal
+    input wire clk,        // Clock
+    input wire rst_n,      // Active low reset
+    input wire [7:0] inn, // 8-bit input (analogous to input current for a real neuron)
+    output wire spike      // Output spike signal
 );
 
 // Parameters
