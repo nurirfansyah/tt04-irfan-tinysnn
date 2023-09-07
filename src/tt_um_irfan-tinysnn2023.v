@@ -14,7 +14,7 @@ module tt_um_irfan-tinysnn2023 #( parameter MAX_COUNT = 24'd10_000_000 ) (
     spiking_neuron neuron0(
         .clk(clk),        // Clock
         .rst_n(rst_n),      // Active low reset
-        .input(ui_in[7:0]), // 8-bit input (analogous to input current for a real neuron)
+        .inn(ui_in[7:0]), // 8-bit input (analogous to input current for a real neuron)
         .spike(uo_out[0])      // Output spike signal
     );
         
