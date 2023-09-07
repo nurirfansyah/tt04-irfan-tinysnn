@@ -1,7 +1,7 @@
 module spiking_neuron (
     input clk,        // Clock
     input rst_n,      // Active low reset
-    input [7:0] input, // 8-bit input (analogous to input current for a real neuron)
+    input [7:0] inn, // 8-bit input (analogous to input current for a real neuron)
     output spike      // Output spike signal
 );
 
@@ -16,7 +16,7 @@ always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
         accumulator <= 8'b0;
     end else begin
-        accumulator <= accumulator + input;  // Accumulate the input
+        accumulator <= accumulator + inn;  // Accumulate the input
     end
 end
 
