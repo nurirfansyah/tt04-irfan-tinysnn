@@ -11,13 +11,13 @@ module tt_um_irfan_tinysnn #( parameter MAX_COUNT = 24'd10_000_000 ) (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-/*    spiking_neuron neuron0(
+    spiking_neuron neuron0(
         .clk(clk),        // Clock
         .rst_n(rst_n),      // Active low reset
         .inn(ui_in[7:0]), // 8-bit input (analogous to input current for a real neuron)
         .spike(uo_out[0])      // Output spike signal
     );
-*/        
+        
     wire reset = ! rst_n;
     wire [6:0] led_out;
     assign uo_out[6:0] = led_out;
