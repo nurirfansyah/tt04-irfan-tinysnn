@@ -1,3 +1,5 @@
+`timescale 1ns / 1ps
+
 `default_nettype none
 
 module tt_um_irfan_tinysnn #( parameter MAX_COUNT = 24'd10_000_000 ) (
@@ -20,19 +22,24 @@ module tt_um_irfan_tinysnn #( parameter MAX_COUNT = 24'd10_000_000 ) (
         
     wire reset = ! rst_n;
     wire [6:0] led_out;
+    
+    reg neuron_out;
+    
     assign uo_out[6:0] = led_out;
     assign uo_out[7] = 1'b0;
+    assign uo_out[0] = neuron_out;
 
     // use bidirectionals as outputs
     assign uio_oe = 8'b11111111;
 
-    always @(posedge clk) begin
+/*    always @(posedge clk) begin
         // if reset, set counter to 0
         if (reset) begin
-            uo_out[0] <= 0;
+            neuron_out <= 0;
         end else begin
-            uo_out[0] <= 0;
+            neuron_out <= 1;
         end
     end
-
+*/
+    
 endmodule
