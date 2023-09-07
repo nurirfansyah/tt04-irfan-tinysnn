@@ -11,6 +11,12 @@ module tt_um_seven_segment_seconds #( parameter MAX_COUNT = 24'd10_000_000 ) (
     input  wire       rst_n     // reset_n - low to reset
 );
 
+    spiking_neuron neuron0(
+        .clk(clk),        // Clock
+        .rst_n(rst_n),      // Active low reset
+        .input(ui_in[7:0]), // 8-bit input (analogous to input current for a real neuron)
+        .spike(uo_out[0])      // Output spike signal
+        
     wire reset = ! rst_n;
     wire [6:0] led_out;
     assign uo_out[6:0] = led_out;
@@ -22,7 +28,9 @@ module tt_um_seven_segment_seconds #( parameter MAX_COUNT = 24'd10_000_000 ) (
     always @(posedge clk) begin
         // if reset, set counter to 0
         if (reset) begin
+            uo_out[0] <= 0;
         end else begin
+            uo_out[0] <= 0;
         end
     end
 
