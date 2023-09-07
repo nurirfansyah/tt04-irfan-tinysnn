@@ -23,11 +23,11 @@ module tt_um_irfan_tinysnn (
     wire reset = ! rst_n;
     wire [6:0] led_out;
     
-    reg neuron_out;
+    //reg neuron_out;
     
     assign uo_out[6:0] = led_out;
     assign uo_out[7] = 1'b0;
-    assign uo_out[0] = neuron_out;
+    //assign uo_out[0] = neuron_out;
 
     // use bidirectionals as outputs
     assign uio_oe = 8'b11111111;
