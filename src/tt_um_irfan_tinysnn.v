@@ -2,7 +2,7 @@
 
 `default_nettype none
 
-module tt_um_irfan_tinysnn #( parameter MAX_COUNT = 24'd10_000_000 ) (
+module tt_um_irfan_tinysnn (
     input  wire [7:0] ui_in,    // Dedicated inputs - connected to the input switches
     output wire [7:0] uo_out,   // Dedicated outputs - connected to the 7 segment display
     input  wire [7:0] uio_in,   // IOs: Bidirectional Input path
