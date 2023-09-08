@@ -26,7 +26,7 @@ module tt_um_irfan_tinysnn (
 
     // Map the 2 SNN outputs to the first 2 bits of uo_out
     assign uo_out[1:0] = snn_output;
-    assign uo_out[7:2] = 6'b0; // Assigning the rest of the bits to 0 for this example.
+    assign uo_out[7:2] = 6'b101010; // Assigning the rest of the bits to 0 for this example.
 
     // IO Pins - Placeholder logic, not connected to SNN for now
     assign uio_out = uio_in;
