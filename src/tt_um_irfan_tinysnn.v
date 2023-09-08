@@ -17,7 +17,7 @@ module tt_um_irfan_tinysnn (
         .clk(clk),        // Clock
         .rst_n(rst_n),      // Active low reset
         .neuron_input(ui_in[7:0]), // 8-bit input (analogous to input current for a real neuron)
-        .spike(uo_out[0])      // Output spike signal
+        .neuron_spike(uo_out[0])      // Output spike signal
     );
         
     wire reset = ! rst_n;
