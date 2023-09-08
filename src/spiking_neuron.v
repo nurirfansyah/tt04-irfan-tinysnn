@@ -1,4 +1,4 @@
-module simple_spiking_neuron (
+module spiking_neuron (
     input wire clk,
     input wire rst_n,
     input wire [7:0] neuron_input,
