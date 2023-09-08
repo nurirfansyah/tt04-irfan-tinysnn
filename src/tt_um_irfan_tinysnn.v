@@ -22,9 +22,9 @@ module tt_um_irfan_tinysnn (
         
     wire reset = ! rst_n;
     
-    reg [7:0] neuron_out;
+    reg [6:0] neuron_out;
     
-    assign uo_out[7:0] = neuron_out;
+    assign uo_out[7:1] = neuron_out;
 
     // use bidirectionals as outputs
     assign uio_oe = 8'b11111111;
