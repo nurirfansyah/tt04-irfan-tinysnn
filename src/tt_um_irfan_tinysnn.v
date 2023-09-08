@@ -1,5 +1,4 @@
 `timescale 1ns / 1ps
-
 `default_nettype none
 
 module tt_um_irfan_tinysnn (
@@ -13,31 +12,24 @@ module tt_um_irfan_tinysnn (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-    spiking_neuron neuron0(
-        .clk(clk),        // Clock
-        .rst_n(rst_n),      // Active low reset
-        .neuron_input(ui_in[7:0]), // 8-bit input (analogous to input current for a real neuron)
-        .neuron_spike(uo_out[0])      // Output spike signal
+    wire [7:0] encoded_spikes;
+    wire [1:0] snn_output;
+
+    // Spiking Neural Network
+    SpikingNeuralNetwork snn (
+        .clk(clk),
+        .reset(!rst_n),
+        .inputValue(ui_in),
+        .input_spikes(encoded_spikes),
+        .output_spikes(snn_output)
     );
-        
-    wire reset = ! rst_n;
-    
-    reg [6:0] neuron_out = 7'b1010101;
-    
-    assign uo_out[7:1] = neuron_out;
 
-    // use bidirectionals as outputs
-    assign uio_oe = 8'b11111111;
-    assign uio_out = 8'b10101010;    // unique pattern for testing
+    // Map the 2 SNN outputs to the first 2 bits of uo_out
+    assign uo_out[1:0] = snn_output;
+    assign uo_out[7:2] = 6'b0; // Assigning the rest of the bits to 0 for this example.
 
-/*    always @(posedge clk) begin
-        // if reset, set counter to 0
-        if (reset) begin
-            neuron_out <= 0;
-        end else begin
-            neuron_out <= 1;
-        end
-    end
-*/
-    
+    // IO Pins - Placeholder logic, not connected to SNN for now
+    assign uio_out = uio_in;
+    assign uio_oe = 8'b11111111; // All set as outputs for this example.
+
 endmodule
