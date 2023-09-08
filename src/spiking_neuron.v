@@ -1,32 +1,24 @@
 module spiking_neuron (
-    input wire clk,        // Clock
-    input wire rst_n,      // Active low reset
-    input wire [7:0] inn, // 8-bit input (analogous to input current for a real neuron)
-    output wire spike      // Output spike signal
+    input clk,
+    input rst_n,
+    input [7:0] neuron_input,
+    output reg spike
 );
 
-// Parameters
-parameter THRESHOLD = 8'd255; // The firing threshold for our neuron
+parameter THRESHOLD = 8'd255;
+reg [7:0] accumulator = 8'b0;
 
-// Internal variables
-reg [7:0] accumulator = 8'b0;  // To accumulate the inputs
-
-// Spike logic
 always @(posedge clk or negedge rst_n) begin
-    if (!rst_n) begin
-        accumulator <= 8'b0;
-    end else begin
-        accumulator <= accumulator + inn;  // Accumulate the input
-    end
+    if (!rst_n) accumulator <= 8'b0;
+    else accumulator <= accumulator + neuron_input;
 end
 
-// Check for spike condition
-assign spike = (accumulator >= THRESHOLD) ? 1 : 0;
-
-// Reset accumulator after spike
 always @(posedge clk) begin
-    if (spike) begin
-        accumulator <= 8'b0;  // Reset accumulator when a spike occurs
+    if (accumulator >= THRESHOLD) begin
+        accumulator <= 8'b0;
+        spike <= 1;
+    end else begin
+        spike <= 0;
     end
 end
 
