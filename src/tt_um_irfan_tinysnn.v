@@ -22,7 +22,7 @@ module tt_um_irfan_tinysnn (
         
     wire reset = ! rst_n;
     
-    reg [6:0] neuron_out;
+    reg [6:0] neuron_out = 7'b1010101;
     
     assign uo_out[7:1] = neuron_out;
 
